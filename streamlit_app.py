@@ -10,9 +10,6 @@ st.write(
     """
 )
 
-fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
-st.text(fruityvice_response)
-
 name_on_order = st.text_input("Name on Smoothie")
 st.write("The name on your Smoothie will be: ", name_on_order)
 
@@ -24,6 +21,9 @@ my_dataframe = session.table("smoothies.public.fruit_options").select(col('fruit
 ingredients_list = st.multiselect(
     "Choose up to 5 ingredients",
     my_dataframe, max_selections=5)
+
+fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
+st.text(fruityvice_response.json())
 
 if ingredients_list:
     #st.write(ingredients_list)
